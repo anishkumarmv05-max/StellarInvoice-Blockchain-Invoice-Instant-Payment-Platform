@@ -168,12 +168,20 @@ export default function InvoiceDetail() {
           </button>
         )}
 
-        <button
-          onClick={() => generateInvoicePDF(invoice)}
-          className="w-full mt-3 border border-slate-300 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-slate-50"
-        >
-          <Download size={16} /> Download {invoice.status === "paid" ? "Receipt" : "Invoice"} PDF
-        </button>
+        <div className="flex gap-3 mt-3">
+          <button
+            onClick={() => window.print()}
+            className="flex-1 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800"
+          >
+            <Download size={16} className="rotate-180" /> Print
+          </button>
+          <button
+            onClick={() => generateInvoicePDF(invoice)}
+            className="flex-1 border border-slate-300 dark:border-slate-700 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800"
+          >
+            <Download size={16} /> Save PDF
+          </button>
+        </div>
       </div>
     </div>
   );
