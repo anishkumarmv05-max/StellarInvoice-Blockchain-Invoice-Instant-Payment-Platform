@@ -21,6 +21,9 @@ export default function Navbar() {
             <>
               {user.walletAddress && <LiveBalance walletAddress={user.walletAddress} />}
               <Link to="/dashboard" className="hover:text-stellar-purple dark:text-slate-300">Dashboard</Link>
+              {user.role === "freelancer" && (
+                <Link to="/clients" className="hover:text-stellar-purple dark:text-slate-300">Clients</Link>
+              )}
               <Link to="/create-invoice" className="hover:text-stellar-purple hidden sm:inline dark:text-slate-300">New Invoice</Link>
               <button
                 onClick={() => { logout(); navigate("/"); }}

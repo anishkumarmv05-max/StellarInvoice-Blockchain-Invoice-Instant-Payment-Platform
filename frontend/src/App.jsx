@@ -9,6 +9,7 @@ import CreateInvoice from "./pages/CreateInvoice";
 import InvoiceDetail from "./pages/InvoiceDetail";
 import Feedback from "./pages/Feedback";
 import AdminDashboard from "./pages/AdminDashboard";
+import Clients from "./pages/Clients";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/invoice/:id" element={<InvoiceDetail />} />
 
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/clients" element={<ProtectedRoute><Clients /></ProtectedRoute>} />
           <Route
             path="/create-invoice"
             element={
