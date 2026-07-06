@@ -15,12 +15,19 @@ export default function InvoiceDetail() {
   const [paying, setPaying] = useState(false);
   const [wallet, setWalletState] = useState(null);
 
+  const [xlmPrice, setXlmPrice] = useState(null);
+
   const load = () => {
     api
       .get(`/invoices/${id}`)
       .then((res) => setInvoice(res.data.invoice))
       .catch(() => setError("Invoice not found"))
       .finally(() => setLoading(false));
+
+    fetch("https://api.coingecko.com/api/v3/simple/price?ids=stellar&vs_currencies=usd")
+      .then((res) => res.json())
+      .then((data) => setXlmPrice(data.stellar.usd))
+      .catch(() => console.error("Could not fetch XLM price"));
   };
 
   useEffect(load, [id]);
@@ -116,9 +123,16 @@ export default function InvoiceDetail() {
           </table>
         </div>
 
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-end mb-6">
           <span className="text-slate-500">Total</span>
-          <span className="text-2xl font-bold">{invoice.totalAmount} XLM</span>
+          <div className="text-right">
+            <div className="text-2xl font-bold">{invoice.totalAmount} XLM</div>
+            {xlmPrice && (
+              <div className="text-sm text-slate-500">
+                ≈ ${(invoice.totalAmount * xlmPrice).toFixed(2)} USD
+              </div>
+            )}
+          </div>
         </div>
 
         {error && <div className="bg-red-50 text-red-600 text-sm p-3 rounded-lg mb-4">{error}</div>}
