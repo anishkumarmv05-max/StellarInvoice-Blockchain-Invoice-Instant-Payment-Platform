@@ -65,7 +65,11 @@ export default function Dashboard() {
             <Wallet className="text-stellar-purple" />
             <div>
               <p className="font-medium">Connect your Stellar wallet</p>
-              <p className="text-sm text-slate-500">Required to {user?.role === "freelancer" ? "create invoices" : "pay invoices"}.</p>
+              <p className="text-sm text-slate-500">
+                {user?.role === "client"
+                  ? "⚠️ Clients must connect their wallet to see invoices sent to them."
+                  : "Required to create and manage invoices."}
+              </p>
             </div>
           </div>
           <button

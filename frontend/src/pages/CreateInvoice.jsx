@@ -8,8 +8,8 @@ const emptyItem = () => ({ name: "", quantity: 1, price: 0 });
 export default function CreateInvoice() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
+    clientWalletAddress: "",
     clientName: "",
-    clientEmail: "",
     title: "",
     description: "",
     companyLogoUrl: "",
@@ -45,21 +45,20 @@ export default function CreateInvoice() {
       {error && <div className="bg-red-50 text-red-600 text-sm p-3 rounded-lg mb-4">{error}</div>}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="space-y-3">
+          <label className="text-sm font-medium text-slate-600">Client Stellar Wallet Address</label>
           <input
-            className="border border-slate-300 rounded-lg px-4 py-2.5"
-            placeholder="Client name"
-            value={form.clientName}
-            onChange={(e) => setForm({ ...form, clientName: e.target.value })}
+            className="w-full border border-slate-300 rounded-lg px-4 py-2.5 font-mono text-sm"
+            placeholder="GXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+            value={form.clientWalletAddress}
+            onChange={(e) => setForm({ ...form, clientWalletAddress: e.target.value })}
             required
           />
           <input
-            type="email"
-            className="border border-slate-300 rounded-lg px-4 py-2.5"
-            placeholder="Client email"
-            value={form.clientEmail}
-            onChange={(e) => setForm({ ...form, clientEmail: e.target.value })}
-            required
+            className="w-full border border-slate-300 rounded-lg px-4 py-2.5"
+            placeholder="Client display name (optional)"
+            value={form.clientName}
+            onChange={(e) => setForm({ ...form, clientName: e.target.value })}
           />
         </div>
 

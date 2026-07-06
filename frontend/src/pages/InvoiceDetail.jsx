@@ -90,7 +90,10 @@ export default function InvoiceDetail() {
         <div className="grid grid-cols-2 gap-4 text-sm mb-6">
           <div>
             <p className="text-slate-400">Billed to</p>
-            <p className="font-medium">{invoice.clientName}</p>
+            <p className="font-medium">{invoice.clientName || "Client"}</p>
+            <p className="font-mono text-xs text-slate-400 break-all mt-0.5">
+              {invoice.clientWalletAddress?.slice(0, 8)}...{invoice.clientWalletAddress?.slice(-6)}
+            </p>
           </div>
           <div>
             <p className="text-slate-400">Due date</p>

@@ -13,8 +13,8 @@ const createInvoice = async (req, res, next) => {
     if (!req.user.walletAddress) {
       return res.status(400).json({ message: "Connect your Stellar wallet before creating invoices" });
     }
-    const { clientEmail, clientName, title, description, items, dueDate } = req.body;
-    if (!clientEmail || !clientName || !title || !items || !items.length || !dueDate) {
+    const { clientWalletAddress, clientName, title, description, items, dueDate, companyLogoUrl } = req.body;
+    if (!clientWalletAddress || !title || !items || !items.length || !dueDate) {
       return res.status(400).json({ message: "Missing required invoice fields" });
     }
 
@@ -22,10 +22,11 @@ const createInvoice = async (req, res, next) => {
       invoiceNumber: generateInvoiceNumber(),
       freelancerId: req.user._id,
       freelancerWallet: req.user.walletAddress,
-      clientEmail,
-      clientName,
+      clientWalletAddress,
+      clientName: clientName || "Client",
       title,
       description,
+      companyLogoUrl,
       items,
       dueDate,
     });
@@ -40,7 +41,12 @@ const getInvoices = async (req, res, next) => {
   try {
     let filter = {};
     if (req.user.role === "freelancer") filter = { freelancerId: req.user._id };
-    if (req.user.role === "client") filter = { clientEmail: req.user.email };
+    if (req.user.role === "client") {
+      if (!req.user.walletAddress) {
+        return res.json({ invoices: [], message: "Connect your wallet to see invoices sent to you." });
+      }
+      filter = { clientWalletAddress: req.user.walletAddress };
+    }
     const invoices = await Invoice.find(filter).sort({ createdAt: -1 });
     res.json({ invoices });
   } catch (err) {
