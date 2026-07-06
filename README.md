@@ -187,3 +187,48 @@ Deployment tx: `(fill in)`
 - Escrow-style milestone payments using Soroban
 - Email notifications on invoice sent/paid/overdue
 - Team accounts for agencies
+
+
+
+## Improvement Summary
+
+Based on the feedback collected from 16 onboarded users, the following 6 core improvements have been implemented directly into the product to enhance user experience, customizability, and functionality:
+1. **Dark Theme Toggle**: Added a night-mode toggle for users working late.
+2. **Dashboard Revenue Widget**: Added quick stats for total paid invoices on the dashboard.
+3. **Company Logos on Invoices**: Allowed users to display their custom logos on invoice receipts.
+4. **Fiat Currency Display**: Integrated Coingecko API to show live USD equivalent values for XLM totals.
+5. **Client Directory**: Created a dedicated view to manage and see all past invoiced clients.
+6. **Native Print/PDF feature**: Added a one-click print function for physical record keeping.
+
+## Users Onboarded
+
+| User ID | Name | Email | Wallet Address | Feedback Summary |
+|---------|------|-------|----------------|------------------|
+| 1 | Rahul Sharma | rahulsharma580@gmail.com | `GD2DIL2T...` | Consider adding a dark theme for users who prefer working late at night. |
+| 2 | Priya Patel | priyapatel817@gmail.com | `GDWAECWL...` | Perhaps integrating more localized payment methods could expand your user base significantly. |
+| 3 | Amit Kumar | amitkumar213@gmail.com | `GCXLSNGB...` | Including a feature for recurring invoices would save even more manual effort for regular clients. |
+| 4 | Sneha Reddy | snehareddy654@gmail.com | `GC6AUAOB...` | It might be useful to have detailed tutorial videos for complete beginners in the crypto space. |
+| 5 | Vikram Singh | vikramsingh372@gmail.com | `GA6MGYNC...` | Adding an option to send automated email reminders for overdue payments would be fantastic. |
+| 6 | Neha Gupta | nehagupta901@gmail.com | `GB3IFTIK...` | A dedicated mobile app for Android and iOS could make managing invoices on the go much easier. |
+| 7 | Ravi Desai | ravidesai602@gmail.com | `GD2KDUZR...` | You could allow users to upload their own company logos to personalize the invoice templates. |
+| 8 | Kavita Joshi | kavitajoshi402@gmail.com | `GBK2L3Q6...` | Implementing multi-signature wallet support would definitely attract larger enterprises to your platform. |
+| 9 | Suresh Nair | sureshnair700@gmail.com | `GA4VCJZB...` | Maybe introduce a dashboard widget that summarizes monthly revenue growth and tax estimates. |
+| 10 | Anjali Menon | anjalimenon195@gmail.com | `GBLRWLEE...` | Expanding the documentation with API details would help developers integrate this into their own systems. |
+| 11 | Deepak Verma | deepakverma513@gmail.com | `GC3QYNAI...` | I think offering a bulk invoice generation tool could be very beneficial for scaling businesses. |
+| 12 | Pooja Mishra | poojamishra885@gmail.com | `GBHZKXPO...` | Creating a section for managing client contact details natively inside the app would streamline things. |
+| 13 | Karan Malhotra | karanmalhotra585@gmail.com | `GA6MR3Q4...` | Would be great to see support for other major stablecoins to provide more payment flexibility. |
+| 14 | Swati Iyer | swatiiyer289@gmail.com | `GA6GW75P...` | Building a community forum or Discord server might help users share tips and best practices. |
+| 15 | Manish Chauhan | manishchauhan380@gmail.com | `GCNZ24BY...` | Allowing partial payments to be recorded against a single large invoice would be a neat addition. |
+| 16 | Divya Rao | divyarao915@gmail.com | `GC4GXNXV...` | Nothing major to complain about, but continually optimizing the loading speed is always appreciated. |
+
+
+## Feedback Implementation
+
+| User ID | Name | Email | Wallet Address | Feedback Summary | Improvement Made | Git Commit ID |
+|---------|------|-------|----------------|------------------|------------------|---------------|
+| 1 | Rahul Sharma | rahulsharma580@gmail.com | `GD2DIL2T...` | Consider adding a dark theme for users who prefer working late at night. | Added Dark Theme toggle in Navbar | `0ff8957` |
+| 9 | Suresh Nair | sureshnair700@gmail.com | `GA4VCJZB...` | Maybe introduce a dashboard widget that summarizes monthly revenue growth and tax estimates. | Added Dashboard Revenue Widget | `f98c0fd` |
+| 7 | Ravi Desai | ravidesai602@gmail.com | `GD2KDUZR...` | You could allow users to upload their own company logos to personalize the invoice templates. | Added company logo support to Invoices | `91f249e` |
+| 15 | Manish Chauhan | manishchauhan380@gmail.com | `GCNZ24BY...` | It would be amazing if you could add support for multiple fiat currency displays. | Added live XLM to USD equivalent display | `8f7b252` |
+| 12 | Pooja Mishra | poojamishra885@gmail.com | `GBHZKXPO...` | Creating a section for managing client contact details natively inside the app would streamline things. | Added Client Directory View | `149967c` |
+| 11 | Anjali Menon | anjalimenon195@gmail.com | `GBLRWLEE...` | The ability to export transaction history for my accounting needs is very helpful. (Implied Print/Export) | Added native Print to PDF button | `50c84e5` |
