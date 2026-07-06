@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Rocket, LogOut } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import LiveBalance from "./LiveBalance";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -16,6 +17,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4 text-sm">
           {user ? (
             <>
+              {user.walletAddress && <LiveBalance walletAddress={user.walletAddress} />}
               <Link to="/dashboard" className="hover:text-stellar-purple">Dashboard</Link>
               <Link to="/create-invoice" className="hover:text-stellar-purple hidden sm:inline">New Invoice</Link>
               <button
