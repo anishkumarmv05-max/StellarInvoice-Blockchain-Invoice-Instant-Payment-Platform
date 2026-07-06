@@ -72,7 +72,12 @@ export default function InvoiceDetail() {
             <h1 className="text-xl font-bold">{invoice.title}</h1>
             <p className="text-slate-500 text-sm">#{invoice.invoiceNumber}</p>
           </div>
-          <StatusBadge status={invoice.status} />
+          <div className="flex flex-col items-end gap-2">
+            <StatusBadge status={invoice.status} />
+            {invoice.companyLogoUrl && (
+              <img src={invoice.companyLogoUrl} alt="Company Logo" className="h-10 object-contain rounded" />
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4 text-sm mb-6">

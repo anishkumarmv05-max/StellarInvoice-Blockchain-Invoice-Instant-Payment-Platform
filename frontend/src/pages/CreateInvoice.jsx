@@ -12,6 +12,7 @@ export default function CreateInvoice() {
     clientEmail: "",
     title: "",
     description: "",
+    companyLogoUrl: "",
     dueDate: "",
   });
   const [items, setItems] = useState([emptyItem()]);
@@ -71,11 +72,19 @@ export default function CreateInvoice() {
         />
 
         <textarea
-          className="w-full border border-slate-300 rounded-lg px-4 py-2.5"
+          className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg px-4 py-2.5"
           placeholder="Description of work"
           rows={3}
           value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })}
+        />
+
+        <input
+          type="url"
+          className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg px-4 py-2.5"
+          placeholder="Company Logo URL (optional)"
+          value={form.companyLogoUrl}
+          onChange={(e) => setForm({ ...form, companyLogoUrl: e.target.value })}
         />
 
         <div>

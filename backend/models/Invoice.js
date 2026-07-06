@@ -18,6 +18,7 @@ const invoiceSchema = new mongoose.Schema(
     clientName: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, default: "" },
+    companyLogoUrl: { type: String, default: "" },
     items: { type: [itemSchema], required: true, validate: (v) => v.length > 0 },
     totalAmount: { type: Number, required: true, min: 0 },
     currency: { type: String, default: "XLM" },
