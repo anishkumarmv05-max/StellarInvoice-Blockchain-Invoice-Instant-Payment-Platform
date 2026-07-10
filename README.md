@@ -113,17 +113,17 @@ Below is the verified ledger of real testnet transactions, showing client paymen
 
 | Invoice No. | Name | Amount (XLM) | Trnx Link |
 |---|---|---|---|
-| INV-286890-3484 | Diya Chatterjee | 15.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/5578c9281e24e1e1b51ae597f2157367169b37e3fcdf06619ba5acc3d122f942) |
-| INV-369983-4503 | Ishaan Malhotra | 16.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/17dd4f7e752d92df3cb34951eb82b64cd0ae8ecb8a2b60111f95af16977a12b8) |
-| INV-451078-5765 | Ayaan Gupta | 17.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/fca0bee5b222137143019801d8e857d637f4c0d93624fc8febbfd37fcd054738) |
 | INV-529163-2423 | Kavya Sen | 18.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/bf996724a6ea8c95981f5fb1b1826bfce6496fdf03d83b8272d241ace05b575b) |
-| INV-611173-7118 | Krishna Nair | 19.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/cdb2e86d263cb522f4ee95250c4f3dbae8146d1f431f25b2cbef7eaf7759f51a) |
-| INV-690373-7718 | Ananya Malhotra | 20.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/f065f1ca95abe13f3429b437579482b2af1300d1392accc8bfd679ff36265dfc) |
-| INV-769865-4905 | Krishna Banerjee | 21.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/9f0f32cb1114bfad4f09c4f34b7ed85706703822f116ba4d4f7747f06e926dcc) |
-| INV-850364-8246 | Vivaan Sharma | 22.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/02b4c6889dea6fee3814d49e38e8c26d6e7bdeca5d6a0b13c12299fad2ab6829) |
-| INV-931265-1444 | Reyansh Singh | 23.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/efe88c520b04ff6129eb6ba3576f18935869d100ae4c3735bd5e481e79c4f173) |
-| INV-011483-7484 | Karan Chauhan | 24.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/1ff3862660742458e3d9233e4317f81a2b642af031f4eea187e04c6322a85393) |
-| INV-090272-7539 | Shaurya Chatterjee | 25.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/b1c4bc1915afc57c39e78a48223eb489149af818246f9596ae232abd8ed12ea3) |
-| INV-170277-5441 | Rohan Mishra | 26.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/8425dbd037ea618e7deba908ee4e7af6fe4a32b506310dcacc2dab7122678ae8) |
 | INV-253472-9245 | Amit Sharma | 27.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/997c3200f6d4f5c5cac22449f9692393c40cc16dd886ab5ad87509cdf267fa49) |
+| INV-611173-7118 | Krishna Nair | 19.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/cdb2e86d263cb522f4ee95250c4f3dbae8146d1f431f25b2cbef7eaf7759f51a) |
+| INV-769865-4905 | Krishna Banerjee | 21.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/9f0f32cb1114bfad4f09c4f34b7ed85706703822f116ba4d4f7747f06e926dcc) |
+| INV-369983-4503 | Ishaan Malhotra | 16.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/17dd4f7e752d92df3cb34951eb82b64cd0ae8ecb8a2b60111f95af16977a12b8) |
+| INV-011483-7484 | Karan Chauhan | 24.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/1ff3862660742458e3d9233e4317f81a2b642af031f4eea187e04c6322a85393) |
+| INV-170277-5441 | Rohan Mishra | 26.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/8425dbd037ea618e7deba908ee4e7af6fe4a32b506310dcacc2dab7122678ae8) |
+| INV-850364-8246 | Vivaan Sharma | 22.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/02b4c6889dea6fee3814d49e38e8c26d6e7bdeca5d6a0b13c12299fad2ab6829) |
+| INV-090272-7539 | Shaurya Chatterjee | 25.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/b1c4bc1915afc57c39e78a48223eb489149af818246f9596ae232abd8ed12ea3) |
+| INV-931265-1444 | Reyansh Singh | 23.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/efe88c520b04ff6129eb6ba3576f18935869d100ae4c3735bd5e481e79c4f173) |
+| INV-690373-7718 | Ananya Malhotra | 20.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/f065f1ca95abe13f3429b437579482b2af1300d1392accc8bfd679ff36265dfc) |
+| INV-451078-5765 | Ayaan Gupta | 17.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/fca0bee5b222137143019801d8e857d637f4c0d93624fc8febbfd37fcd054738) |
+| INV-286890-3484 | Diya Chatterjee | 15.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/5578c9281e24e1e1b51ae597f2157367169b37e3fcdf06619ba5acc3d122f942) |
 
