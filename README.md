@@ -3,11 +3,12 @@
 > A production-ready Stellar dApp where freelancers send verifiable invoices, clients pay with native XLM, and both parties instantly receive verified on-chain proof of payment without middleman fees.
 
 ## 🚀 Quick Links
-- **Live Platform**: [stellarinvoice.vercel.app](https://stellar-invoice-blockchain-invoice.vercel.app/)
-- **Demo Video**: [Watch the Demo](https://drive.google.com/file/d/1sc4nMw1qyj9_GPjLATc5YPyY8doUhJWp/view?usp=sharing)
+- **Live Platform**: [stellarinvoice.vercel.app](https://stellarinvoice.vercel.app)
+- **Pitch Deck / Presentation**: [View Pitch Deck (Google Slides)](#)
+- **Demo Video**: [Watch the Demo](#)
 - **Contract Deployment Address**: `C_PLACEHOLDER_FOR_YOUR_CONTRACT_ADDRESS`
-- **User Feedback Form**: [StellarInvoice Feedback Form](https://drive.google.com/file/d/1sc4nMw1qyj9_GPjLATc5YPyY8doUhJWp/view?usp=sharing)
-- **User Feedback Responses**: [View Responses Sheet Link](https://docs.google.com/spreadsheets/d/1jD1VyQGsv4al_rQYlEKw4ukA4BQpTca1t7f7HveapWY/edit?usp=sharing)
+- **User Feedback Form**: [StellarInvoice Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSekiWW5spRGm2zZl59nQq_W2eTJRglzspoY4krLXNbBOIbOiw/viewform)
+- **User Feedback Responses**: [View Responses Sheet Link](https://docs.google.com/spreadsheets/d/1jD1VyQGsv4al_rQYlEKw4ukA4BQpTca1t7f7HveapWY/edit)
 
 ---
 
@@ -66,12 +67,13 @@ contracts/  Soroban (Rust) — smart contract (CI/CD integrated)
   ![Mobile Design](./images/mobile_responsive.png)
 
 ### Analytics Dashboard
-- **PostHog Live Telemetry**:
+- **Live Telemetry**:
   ![Analytics Dashboard](./images/monitoring_dashboard.png)
 
 ## Users Onboarded
 
 Below is the list of users who actively tested the platform and provided feedback:
+
 
 | User ID | Name | Email | Wallet Address | Feedback Summary |\n|---|---|---|---|---|\n
 
@@ -79,10 +81,12 @@ Below is the list of users who actively tested the platform and provided feedbac
 
 Based on the feedback collected, the following core improvements were implemented directly into the product to enhance user experience:
 
+
 | User ID | Name | Email | Wallet Address | Feedback Summary | Improvement Made | Git Commit ID |\n|---|---|---|---|---|---|---|\n
 
 ## Onchain Proof of Wallet Interactions
 
 Below is the verified ledger of real testnet transactions, showing client payments against freelancer invoices, verified entirely on the Stellar Explorer:
+
 
 | Invoice No. | Name | Amount (XLM) | Trnx Link |\n|---|---|---|---|\n
