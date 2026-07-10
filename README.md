@@ -74,19 +74,16 @@ contracts/  Soroban (Rust) — smart contract (CI/CD integrated)
 
 Below is the list of users who actively tested the platform and provided feedback:
 
-
 | User ID | Name | Email | Wallet Address | Feedback Summary |\n|---|---|---|---|---|\n
 
 ## Feedback Implementation
 
 Based on the feedback collected, the following core improvements were implemented directly into the product to enhance user experience:
 
-
 | User ID | Name | Email | Wallet Address | Feedback Summary | Improvement Made | Git Commit ID |\n|---|---|---|---|---|---|---|\n
 
 ## Onchain Proof of Wallet Interactions
 
 Below is the verified ledger of real testnet transactions, showing client payments against freelancer invoices, verified entirely on the Stellar Explorer:
-
 
 | Invoice No. | Name | Amount (XLM) | Trnx Link |\n|---|---|---|---|\n
