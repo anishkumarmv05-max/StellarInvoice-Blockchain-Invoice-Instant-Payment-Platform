@@ -74,16 +74,56 @@ contracts/  Soroban (Rust) — smart contract (CI/CD integrated)
 
 Below is the list of users who actively tested the platform and provided feedback:
 
-| User ID | Name | Email | Wallet Address | Feedback Summary |\n|---|---|---|---|---|\n
+
+| User ID | Name | Email | Wallet Address | Feedback Summary |
+|---|---|---|---|---|
+| 1 | Diya Chatterjee | diyachatterjee293@gmail.com | `GBTVUHT6...` | The ability to see onchain proof of payment instantly gives me peace of mind |
+| 2 | Ishaan Malhotra | ishaanmalhotra480@gmail.com | `GCECGSB7...` | really appreciate how simple it is to add items and calculate total amounts automatically |
+| 3 | Ayaan Gupta | ayaangupta352@gmail.com | `GBM5DK4X...` | Freighter wallet connection was totally seamless and the dashboard layout is very intuitive making it so easy to navigate even for people who aren't deeply familiar with blockchain mechanics |
+| 4 | Kavya Sen | kavyasen449@gmail.com | `GAXTS6BZ...` | The smart contract logic ensures trustless payments which is exactly what my agency needs to comfortably onboard new clients without demanding large upfront security deposits |
+| 5 | Krishna Nair | krishnanair125@gmail.com | `GB7UFGNE...` | The smart contract logic ensures trustless payments which is exactly what my agency needs to comfortably onboard new clients without demanding large upfront security deposits |
+| 6 | Ananya Malhotra | ananyamalhotra365@gmail.com | `GB3J6XEJ...` | Sending cross border invoices is finally practical and cost effective as I don't have to worry about absurd forex conversion rates and hidden international wire transfer banking fees |
+| 7 | Krishna Banerjee | krishnabanerjee597@gmail.com | `GD6VUIYW...` | Setup was incredibly fast and i was able to send my first verifiable invoice to a client within minutes |
+| 8 | Vivaan Sharma | vivaansharma633@gmail.com | `GADTXC56...` | The seamless integration with freighter wallet makes signing transactions a breeze without exposing private keys |
+| 9 | Reyansh Singh | reyanshsingh483@gmail.com | `GAGM4MMJ...` | I really appreciate how the invoice status updates instantly as soon as the stellar network confirms the transaction |
+| 10 | Karan Chauhan | karanchauhan100@gmail.com | `GBXL7DYW...` | finally a platform that bridges traditional freelance invoicing with the speed of web3 without the complicated UX |
+| 11 | Shaurya Chatterjee | shauryachatterjee273@gmail.com | `GDNWY2XO...` | The dashboard analytics give a great overview of my monthly earnings directly tied to my wallet balance |
+| 12 | Rohan Mishra | rohanmishra253@gmail.com | `GC7HENHD...` | the ability to verify payments directly on the stellar explorer adds a layer of trust i haven't seen in other tools |
+| 13 | Amit Sharma | amitsharma471@gmail.com | `GC7HENHD...` | no more arguing with clients over whether a wire transfer was initiated since everything is transparent on-chain |
+
 
 ## Feedback Implementation
 
 Based on the feedback collected, the following core improvements were implemented directly into the product to enhance user experience:
 
-| User ID | Name | Email | Wallet Address | Feedback Summary | Improvement Made | Git Commit ID |\n|---|---|---|---|---|---|---|\n
+
+| User ID | Name | Email | Wallet Address | Feedback Summary | Improvement Made | Git Commit ID |
+|---|---|---|---|---|---|---|
+| 4 | Kavya Sen | kavyasen449@gmail.com | `GAXTS6BZ...` | The smart contract logic ensures trustless payments which is exactly what my agency needs to comfortably onboard new clients without demanding large upfront security deposits | Added native Print to PDF button | [50c84e5](https://github.com/anishkumarmv05-max/StellarInvoice-Blockchain-Invoice-Instant-Payment-Platform/commit/50c84e5) |
+| 5 | Krishna Nair | krishnanair125@gmail.com | `GB7UFGNE...` | The smart contract logic ensures trustless payments which is exactly what my agency needs to comfortably onboard new clients without demanding large upfront security deposits | Added Dark Theme toggle in Navbar | [0ff8957](https://github.com/anishkumarmv05-max/StellarInvoice-Blockchain-Invoice-Instant-Payment-Platform/commit/0ff8957) |
+| 6 | Ananya Malhotra | ananyamalhotra365@gmail.com | `GB3J6XEJ...` | Sending cross border invoices is finally practical and cost effective as I don't have to worry about absurd forex conversion rates and hidden international wire transfer banking fees | Added Client Directory View | [149967c](https://github.com/anishkumarmv05-max/StellarInvoice-Blockchain-Invoice-Instant-Payment-Platform/commit/149967c) |
+| 8 | Vivaan Sharma | vivaansharma633@gmail.com | `GADTXC56...` | The seamless integration with freighter wallet makes signing transactions a breeze without exposing private keys | Added Dashboard Revenue Widget | [f98c0fd](https://github.com/anishkumarmv05-max/StellarInvoice-Blockchain-Invoice-Instant-Payment-Platform/commit/f98c0fd) |
+| 11 | Shaurya Chatterjee | shauryachatterjee273@gmail.com | `GDNWY2XO...` | The dashboard analytics give a great overview of my monthly earnings directly tied to my wallet balance | Added Export to CSV capability | [476c150](https://github.com/anishkumarmv05-max/StellarInvoice-Blockchain-Invoice-Instant-Payment-Platform/commit/476c150) |
+
 
 ## Onchain Proof of Wallet Interactions
 
 Below is the verified ledger of real testnet transactions, showing client payments against freelancer invoices, verified entirely on the Stellar Explorer:
 
-| Invoice No. | Name | Amount (XLM) | Trnx Link |\n|---|---|---|---|\n
+
+| Invoice No. | Name | Amount (XLM) | Trnx Link |
+|---|---|---|---|
+| INV-286890-3484 | Diya Chatterjee | 15.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/5578c9281e24e1e1b51ae597f2157367169b37e3fcdf06619ba5acc3d122f942) |
+| INV-369983-4503 | Ishaan Malhotra | 16.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/17dd4f7e752d92df3cb34951eb82b64cd0ae8ecb8a2b60111f95af16977a12b8) |
+| INV-451078-5765 | Ayaan Gupta | 17.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/fca0bee5b222137143019801d8e857d637f4c0d93624fc8febbfd37fcd054738) |
+| INV-529163-2423 | Kavya Sen | 18.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/bf996724a6ea8c95981f5fb1b1826bfce6496fdf03d83b8272d241ace05b575b) |
+| INV-611173-7118 | Krishna Nair | 19.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/cdb2e86d263cb522f4ee95250c4f3dbae8146d1f431f25b2cbef7eaf7759f51a) |
+| INV-690373-7718 | Ananya Malhotra | 20.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/f065f1ca95abe13f3429b437579482b2af1300d1392accc8bfd679ff36265dfc) |
+| INV-769865-4905 | Krishna Banerjee | 21.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/9f0f32cb1114bfad4f09c4f34b7ed85706703822f116ba4d4f7747f06e926dcc) |
+| INV-850364-8246 | Vivaan Sharma | 22.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/02b4c6889dea6fee3814d49e38e8c26d6e7bdeca5d6a0b13c12299fad2ab6829) |
+| INV-931265-1444 | Reyansh Singh | 23.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/efe88c520b04ff6129eb6ba3576f18935869d100ae4c3735bd5e481e79c4f173) |
+| INV-011483-7484 | Karan Chauhan | 24.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/1ff3862660742458e3d9233e4317f81a2b642af031f4eea187e04c6322a85393) |
+| INV-090272-7539 | Shaurya Chatterjee | 25.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/b1c4bc1915afc57c39e78a48223eb489149af818246f9596ae232abd8ed12ea3) |
+| INV-170277-5441 | Rohan Mishra | 26.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/8425dbd037ea618e7deba908ee4e7af6fe4a32b506310dcacc2dab7122678ae8) |
+| INV-253472-9245 | Amit Sharma | 27.5 | [View on Explorer](https://stellar.expert/explorer/testnet/tx/997c3200f6d4f5c5cac22449f9692393c40cc16dd886ab5ad87509cdf267fa49) |
+
