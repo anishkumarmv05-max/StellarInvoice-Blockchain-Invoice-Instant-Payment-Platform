@@ -22,11 +22,7 @@ jobs:
           targets: wasm32-unknown-unknown
 
       - name: Install Stellar CLI
-        run: |
-          wget https://github.com/stellar/stellar-cli/releases/latest/download/stellar-cli-linux-amd64.tar.gz
-          tar -xvzf stellar-cli-linux-amd64.tar.gz
-          sudo mv stellar /usr/local/bin/
-          stellar --version
+        run: cargo install --locked stellar-cli --features opt
 
       - name: Build Smart Contract
         run: |
