@@ -3,10 +3,9 @@
 > A production-ready Stellar dApp where freelancers send verifiable invoices, clients pay with native XLM, and both parties instantly receive verified on-chain proof of payment without middleman fees.
 
 ## 🚀 Quick Links
-- **Live Platform**: [stellarinvoice.vercel.app](https://stellarinvoice.vercel.app)
-- **Pitch Deck / Presentation**: [View Pitch Deck (Google Slides)](#)
-- **Demo Video**: [Watch the Demo](#)
-- **Contract Deployment Address**: `C_PLACEHOLDER_FOR_YOUR_CONTRACT_ADDRESS`
+- **Live Platform**: [stellarinvoice.vercel.app](https://stellar-invoice-blockchain-invoice.vercel.app/)
+- **Demo Video**: [Watch the Demo](https://drive.google.com/file/d/1sc4nMw1qyj9_GPjLATc5YPyY8doUhJWp/view?usp=drive_link)
+- **Contract Deployment Address**: `CALMPJ7RWXQTVLNEOMDKTEPTYNWKRI7STLJBS54PGR6FQFCEGKK74Q6S`
 - **User Feedback Form**: [StellarInvoice Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSekiWW5spRGm2zZl59nQq_W2eTJRglzspoY4krLXNbBOIbOiw/viewform)
 - **User Feedback Responses**: [View Responses Sheet Link](https://docs.google.com/spreadsheets/d/1jD1VyQGsv4al_rQYlEKw4ukA4BQpTca1t7f7HveapWY/edit)
 
