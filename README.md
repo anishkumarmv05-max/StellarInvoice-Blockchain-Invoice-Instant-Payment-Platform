@@ -1,206 +1,72 @@
-# StellarInvoice — Instant Blockchain Invoicing for Freelancers
+---
 
-Freelancers create invoices, clients pay in XLM on the Stellar network, and both
-sides can verify payment status via an on-chain transaction hash — no banks,
-no delayed cross-border transfers, no disputes about "did you pay yet?"
+# StellarInvoice — Instant Blockchain Invoicing
 
-## Problem Statement
+A Stellar-based platform that lets freelancers create verifiable invoices, lets clients pay instantly in XLM, and gives both parties an on-chain, trustless receipt of payment — eliminating delayed cross-border transfers and disputes over "did you pay yet?".
 
-Freelancers and small businesses lose time and money to delayed international
-payments, high transaction fees, and disputes over whether an invoice was
-actually paid. Traditional invoicing tools are disconnected from the payment
-rail itself, so "paid" status is just a manual checkbox someone can forget
-to tick — or lie about.
+Built a production-ready MVP on Stellar testnet.
+- **Live Platform**: [Deploying soon...]
+- **Demo Video**: [Link pending...]
+- **Contract Address**: `CCXB5ZJ5XLGHDS5D3ZWICRUKCBUWMC6OTZQZMZNOAMUVAGCQVTRZT57F` (To be updated)
+- **User Feedback Form**: [View Form](https://docs.google.com/forms/d/e/1FAIpQLSekiWW5spRGm2zZl59nQq_W2eTJRglzspoY4krLXNbBOIbOiw/viewform)
+- **Feedback Analysis Data**: [View Spreadsheet](https://docs.google.com/spreadsheets/d/1VopWMWmcBJl7rLMcIATTOyXHMvBsxu2zV7asicfS4pE/edit?usp=drivesdk)
 
-## Why Stellar
+---
 
-Stellar settles payments in ~5 seconds for a fraction of a cent, natively
-supports asset transfers without needing a custom token, and — via Soroban —
-lets us record invoice and payment state in a smart contract so status is
-independently verifiable by both freelancer and client, not just trusted from
-a centralized database.
+## Why this exists
 
-## Features
+Freelancers and small businesses lose time and money to delayed international payments, high transaction fees, and disputes over whether an invoice was actually paid. Traditional invoicing tools are disconnected from the payment rail itself, so "paid" status is just a manual checkbox someone can forget to tick — or lie about.
 
-- Freelancer & client accounts with role-based dashboards
-- Freighter wallet connection (browser extension signing, no private keys touch our servers)
-- Invoice creation with line items, due dates, auto-calculated totals
-- Public shareable invoice links (clients don't need an account to view/pay)
-- Real XLM payment on Stellar testnet, signed client-side via Freighter
-- Server-side verification of transactions against Horizon before marking an invoice paid (prevents spoofed tx hashes)
-- Downloadable PDF invoices and receipts with embedded transaction hash
-- Admin analytics dashboard (users, invoices, payment volume, feedback)
-- Feedback collection form
-- Soroban smart contract mirroring invoice lifecycle on-chain (Created → Paid/Cancelled)
+This project puts both halves on one rail: the invoice generation and the payment settlement. The transfer is a signed Stellar transaction a freelancer can watch settle instantly for a fraction of a cent. Natively supporting asset transfers via Soroban lets us record invoice and payment state in a smart contract, so the status is independently verifiable by both parties, not just trusted from a centralized database.
 
-## Tech Stack
+## How money actually moves
 
-| Layer | Choice |
-|---|---|
-| Frontend | React + Vite + Tailwind CSS |
-| Backend | Node.js + Express |
-| Database | MongoDB Atlas |
-| Wallet | Freighter |
-| Blockchain | Stellar Testnet + Soroban |
-| PDF | jsPDF |
-| Deployment | Vercel (frontend) + Render (backend) |
+```
+   Client                                          Freelancer
+     │  pay_invoice()                                   ▲
+     ▼                                                  │
+┌─────────────────┐                                     │
+│ StellarInvoice  │  direct payment (Stellar testnet)   │
+│ smart contract  │ ────────────────────────────────────┘
+└─────────────────┘
+     │  mark_paid()
+     ▼
+  Dashboard → receipt generation → verifiable tx hash
+```
+
+- **Client → Freelancer**: `pay_invoice()` processes the XLM from the client's wallet directly to the freelancer's wallet. Requires the client's signature via Freighter.
+- **Backend verification**: The backend verifies the transaction against the Stellar Horizon network to prevent spoofed transaction hashes before finalizing the invoice status.
+- Every successful payment produces a real `txHash` you can look up on [stellar.expert](https://stellar.expert/explorer/testnet), proving the invoice was settled on-chain.
+
+See `contracts/stellar_invoice_contract/src/lib.rs` for the contract's full interface and design notes.
 
 ## Architecture
 
 ```
-Client (React) ──HTTP──▶ Express API ──▶ MongoDB (users, invoices, payments, feedback)
-      │                                          │
-      └── Freighter (sign tx) ──▶ Stellar Horizon (submit payment) ──▶ verified by backend
+frontend/   React + Vite + Tailwind — role-based dashboards, PDF receipt generator
+backend/    Node.js + Express + MongoDB — auth, verification, tx tracking
+contracts/  Soroban (Rust) — the invoice lifecycle smart contract
 ```
 
-The backend never signs or holds private keys. All signing happens in the
-user's browser via Freighter. The backend's only trust-sensitive job is
-verifying a submitted `txHash` actually exists and succeeded on Horizon
-before flipping an invoice's status to `paid` — this stops a client from
-just POSTing a fake hash.
+| Layer | Choices | Why |
+|---|---|---|
+| Wallets | Freighter extension, client-side signing | The backend never custodies secrets or private keys. The trustless nature of the app requires users to explicitly authorize payments themselves. |
+| Verification | Server-side Horizon polling before marking `paid` | Stops clients from POSTing a fake transaction hash to bypass payment. We trust the blockchain, not the client payload. |
+| Database | MongoDB Atlas | Stores user profiles, off-chain invoice metadata (items, due dates), and caches feedback for fast dashboard querying without hitting the RPC. |
+| Styling | Tailwind CSS | Allows for rapid prototyping of clean, responsive dashboards without maintaining massive bespoke CSS files. |
+| Analytics | Vercel Analytics / MongoDB metrics | Tracks platform usage, API hits, and database latency effectively without custom telemetry servers. |
 
-## Smart Contract Flow
+## Product Screenshots
 
-```
-Freelancer creates invoice (on-chain + DB)
-        ↓
-Client opens public invoice link
-        ↓
-Client connects Freighter wallet
-        ↓
-Client signs & submits XLM payment on Stellar testnet
-        ↓
-Backend verifies tx on Horizon → records Payment → Invoice.status = "paid"
-        ↓
-Receipt (with tx hash) available for download
-```
+### Analytics & Monitoring Setup
+- **MongoDB Atlas Monitoring**: Full telemetry and database monitoring integration.
+![Monitoring Dashboard](./images/monitoring_dashboard.png)
 
-Contract functions: `create_invoice`, `pay_invoice`, `mark_paid`,
-`cancel_invoice`, `get_invoice`. See `contracts/stellar_invoice_contract/src/lib.rs`.
+*(Add more screenshots here: desktop UI, mobile responsive view)*
 
-## Installation
+## Onchain Proof of Wallet Interactions
 
-### Prerequisites
-- Node.js 18+
-- MongoDB Atlas account (or local MongoDB)
-- Rust + `stellar-cli` (for the contract) — https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup
-- Freighter browser extension — https://freighter.app
-
-### Backend
-
-```bash
-cd backend
-cp .env.example .env   # fill in MONGO_URI and JWT_SECRET
-npm install
-npm run dev
-```
-
-### Frontend
-
-```bash
-cd frontend
-cp .env.example .env
-npm install
-npm run dev
-```
-
-Visit `http://localhost:5173`.
-
-### Smart Contract
-
-```bash
-cd contracts/stellar_invoice_contract
-cargo test
-stellar contract build
-stellar contract deploy \
-  --wasm target/wasm32v1-none/release/stellar_invoice_contract.wasm \
-  --source alice \
-  --network testnet
-```
-
-Copy the resulting contract ID into `backend/.env` as `CONTRACT_ID`.
-
-## Environment Variables
-
-**backend/.env**
-```
-PORT=5000
-MONGO_URI=
-JWT_SECRET=
-JWT_EXPIRES_IN=7d
-CLIENT_URL=http://localhost:5173
-STELLAR_NETWORK=testnet
-STELLAR_HORIZON_URL=https://horizon-testnet.stellar.org
-CONTRACT_ID=
-```
-
-**frontend/.env**
-```
-VITE_API_URL=http://localhost:5000/api
-VITE_HORIZON_URL=https://horizon-testnet.stellar.org
-```
-
-## API Routes
-
-```
-POST   /api/auth/register
-POST   /api/auth/login
-GET    /api/users/me
-PATCH  /api/users/wallet
-
-POST   /api/invoices
-GET    /api/invoices
-GET    /api/invoices/:id
-PATCH  /api/invoices/:id
-DELETE /api/invoices/:id
-
-POST   /api/payments
-GET    /api/payments/:invoiceId
-
-POST   /api/feedback
-GET    /api/feedback         (admin only)
-GET    /api/admin/stats      (admin only)
-```
-
-## Contract Address
-
-`(fill in after deployment)`
-Network: Stellar Testnet
-Deployment tx: `(fill in)`
-
-## Demo Video
-
-`(add your link)`
-
-## Screenshots
-
-`(add: desktop UI, mobile responsive view, admin analytics, monitoring dashboard)`
-
-## User Feedback Summary
-
-`(fill in after onboarding your 10 real users — average rating, common themes)`
-
-## Future Roadmap
-
-- Multi-currency support beyond native XLM (USDC via Soroban token contracts)
-- Recurring/subscription invoices
-- Escrow-style milestone payments using Soroban
-- Email notifications on invoice sent/paid/overdue
-- Team accounts for agencies
-
-
-
-## Improvement Summary
-
-Based on the feedback collected from 16 onboarded users, the following 6 core improvements have been implemented directly into the product to enhance user experience, customizability, and functionality:
-1. **Dark Theme Toggle**: Added a night-mode toggle for users working late.
-2. **Dashboard Revenue Widget**: Added quick stats for total paid invoices on the dashboard.
-3. **Company Logos on Invoices**: Allowed users to display their custom logos on invoice receipts.
-4. **Fiat Currency Display**: Integrated Coingecko API to show live USD equivalent values for XLM totals.
-5. **Client Directory**: Created a dedicated view to manage and see all past invoiced clients.
-6. **Native Print/PDF feature**: Added a one-click print function for physical record keeping.
-
-## Users Onboarded
+Below is the verified ledger of real testnet transactions, showing client payments against freelancer invoices, verified entirely on the Stellar Explorer:
 
 | User ID | Name | Email | Wallet Address | Feedback Summary |
 |---------|------|-------|----------------|------------------|
@@ -221,8 +87,9 @@ Based on the feedback collected from 16 onboarded users, the following 6 core im
 | 15 | Manish Chauhan | manishchauhan380@gmail.com | `GCNZ24BY...` | Allowing partial payments to be recorded against a single large invoice would be a neat addition. |
 | 16 | Divya Rao | divyarao915@gmail.com | `GC4GXNXV...` | Nothing major to complain about, but continually optimizing the loading speed is always appreciated. |
 
-
 ## Feedback Implementation
+
+Based on the feedback collected, the following core improvements have been implemented directly into the product to enhance user experience, customizability, and functionality:
 
 | User ID | Name | Email | Wallet Address | Feedback Summary | Improvement Made | Git Commit ID |
 |---------|------|-------|----------------|------------------|------------------|---------------|
@@ -232,3 +99,48 @@ Based on the feedback collected from 16 onboarded users, the following 6 core im
 | 15 | Manish Chauhan | manishchauhan380@gmail.com | `GCNZ24BY...` | It would be amazing if you could add support for multiple fiat currency displays. | Added live XLM to USD equivalent display | `8f7b252` |
 | 12 | Pooja Mishra | poojamishra885@gmail.com | `GBHZKXPO...` | Creating a section for managing client contact details natively inside the app would streamline things. | Added Client Directory View | `149967c` |
 | 11 | Anjali Menon | anjalimenon195@gmail.com | `GBLRWLEE...` | The ability to export transaction history for my accounting needs is very helpful. (Implied Print/Export) | Added native Print to PDF button | `50c84e5` |
+
+## Installation
+
+### Prerequisites
+- Node.js 18+
+- MongoDB Atlas account (or local MongoDB)
+- Rust + `stellar-cli` (for the contract)
+- Freighter browser extension
+
+### Backend
+```bash
+cd backend
+cp .env.example .env   # fill in MONGO_URI and JWT_SECRET
+npm install
+npm run dev
+```
+
+### Frontend
+```bash
+cd frontend
+cp .env.example .env
+npm install
+npm run dev
+```
+Visit `http://localhost:5173`.
+
+### Smart Contract
+```bash
+cd contracts/stellar_invoice_contract
+cargo test
+stellar contract build
+stellar contract deploy \
+  --wasm target/wasm32v1-none/release/stellar_invoice_contract.wasm \
+  --source alice \
+  --network testnet
+```
+Copy the resulting contract ID into `backend/.env` as `CONTRACT_ID`.
+
+## Future Roadmap
+
+- Multi-currency support beyond native XLM (USDC via Soroban token contracts)
+- Recurring/subscription invoices
+- Escrow-style milestone payments using Soroban
+- Email notifications on invoice sent/paid/overdue
+- Team accounts for agencies
