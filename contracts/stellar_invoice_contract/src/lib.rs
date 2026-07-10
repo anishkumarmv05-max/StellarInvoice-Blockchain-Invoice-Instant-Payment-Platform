@@ -1,7 +1,8 @@
 #![no_std]
 use soroban_sdk::{contract, contracterror, contractimpl, contracttype, Address, Env, String};
 
-#[derive(Clone, Debug, Eq, PartialEq, PartialOrd, Ord, contracttype)]
+#[contracttype]
+#[derive(Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
 pub enum InvoiceStatus {
     Created,
     Sent,
@@ -10,7 +11,8 @@ pub enum InvoiceStatus {
     Expired,
 }
 
-#[derive(Clone, contracttype)]
+#[contracttype]
+#[derive(Clone)]
 pub struct Invoice {
     pub invoice_id: String,
     pub freelancer: Address,
