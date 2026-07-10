@@ -1,0 +1,62 @@
+name: Deploy Smart Contract to Testnet
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'contracts/stellar_invoice_contract/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Install Stellar CLI
+        run: |
+          wget https://github.com/stellar/stellar-cli/releases/latest/download/stellar-cli-linux-amd64.tar.gz
+          tar -xvzf stellar-cli-linux-amd64.tar.gz
+          sudo mv stellar /usr/local/bin/
+          stellar --version
+
+      - name: Build Smart Contract
+        run: |
+          cd contracts/stellar_invoice_contract
+          cargo build --target wasm32-unknown-unknown --release
+        
+      - name: Configure Network and Identity
+        run: |
+          # Generate a new identity for deployment
+          stellar keys generate github_deployer --network testnet
+          
+          # Fund the identity using Friendbot
+          stellar network fund github_deployer --network testnet
+
+      - name: Deploy Contract
+        id: deploy
+        run: |
+          # Deploy the compiled WASM and capture output
+          CONTRACT_ID=$(stellar contract deploy \
+            --wasm contracts/stellar_invoice_contract/target/wasm32-unknown-unknown/release/stellar_invoice_contract.wasm \
+            --source github_deployer \
+            --network testnet)
+            
+          echo "Deployed Contract ID: $CONTRACT_ID"
+          echo "contract_id=$CONTRACT_ID" >> $GITHUB_ENV
+
+      - name: Output Contract ID to Summary
+        run: |
+          echo "### 🚀 Smart Contract Successfully Deployed!" >> $GITHUB_STEP_SUMMARY
+          echo "**Network**: Stellar Testnet" >> $GITHUB_STEP_SUMMARY
+          echo "**Contract ID**: \`${{ env.contract_id }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "[View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/${{ env.contract_id }})" >> $GITHUB_STEP_SUMMARY
