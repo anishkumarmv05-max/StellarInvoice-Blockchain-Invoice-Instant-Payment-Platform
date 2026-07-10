@@ -41,7 +41,7 @@ jobs:
           stellar keys generate github_deployer --network testnet
           
           # Fund the identity using Friendbot
-          stellar network fund github_deployer --network testnet
+          stellar keys fund github_deployer --network testnet
 
       - name: Deploy Contract
         id: deploy
