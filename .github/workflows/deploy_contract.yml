@@ -33,7 +33,7 @@ jobs:
       - name: Build Smart Contract
         run: |
           cd contracts/stellar_invoice_contract
-          cargo build --target wasm32-unknown-unknown --release
+          stellar contract build
         
       - name: Configure Network and Identity
         run: |
@@ -48,7 +48,7 @@ jobs:
         run: |
           # Deploy the compiled WASM and capture output
           CONTRACT_ID=$(stellar contract deploy \
-            --wasm contracts/stellar_invoice_contract/target/wasm32-unknown-unknown/release/stellar_invoice_contract.wasm \
+            --wasm contracts/stellar_invoice_contract/target/wasm32-unknown-unknown/release/stellar_invoice_contract.optimized.wasm \
             --source github_deployer \
             --network testnet)
             
