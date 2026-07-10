@@ -51,7 +51,7 @@ jobs:
         run: |
           # Deploy the compiled WASM and capture output
           CONTRACT_ID=$(stellar contract deploy \
-            --wasm contracts/stellar_invoice_contract/target/wasm32v1-none/release/stellar_invoice_contract.optimized.wasm \
+            --wasm contracts/stellar_invoice_contract/target/wasm32v1-none/release/stellar_invoice_contract.wasm \
             --source github_deployer \
             --network testnet)
             
