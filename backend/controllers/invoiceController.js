@@ -1,4 +1,5 @@
 const Invoice = require("../models/Invoice");
+const stellarService = require("../services/stellarService");
 
 const generateInvoiceNumber = () => {
   const rand = Math.floor(1000 + Math.random() * 9000);
@@ -31,6 +32,12 @@ const createInvoice = async (req, res, next) => {
       dueDate,
     });
 
+    try {
+      await stellarService.create_invoice(invoice.invoiceNumber, req.user.walletAddress, 100, new Date(dueDate).getTime() / 1000);
+    } catch (e) {
+      console.error("Smart contract integration error:", e);
+    }
+
     res.status(201).json({ invoice });
   } catch (err) {
     next(err);
@@ -61,6 +68,14 @@ const getInvoiceById = async (req, res, next) => {
       "name email walletAddress"
     );
     if (!invoice) return res.status(404).json({ message: "Invoice not found" });
+
+    try {
+      const onchainData = await stellarService.get_invoice(invoice.invoiceNumber);
+      console.log("On-chain invoice status:", onchainData.status);
+    } catch (e) {
+      console.error("Smart contract integration error:", e);
+    }
+
     res.json({ invoice });
   } catch (err) {
     next(err);
@@ -79,6 +94,15 @@ const updateInvoice = async (req, res, next) => {
       if (req.body[f] !== undefined) invoice[f] = req.body[f];
     });
     await invoice.save();
+
+    try {
+      if (req.body.status === "Paid") {
+        await stellarService.mark_paid(invoice.invoiceNumber);
+      }
+    } catch (e) {
+      console.error("Smart contract integration error:", e);
+    }
+
     res.json({ invoice });
   } catch (err) {
     next(err);
@@ -93,6 +117,13 @@ const deleteInvoice = async (req, res, next) => {
       return res.status(403).json({ message: "Not authorized to delete this invoice" });
     }
     await invoice.deleteOne();
+
+    try {
+      await stellarService.cancel_invoice(invoice.invoiceNumber);
+    } catch (e) {
+      console.error("Smart contract integration error:", e);
+    }
+
     res.json({ message: "Invoice deleted" });
   } catch (err) {
     next(err);
